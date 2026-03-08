@@ -1,0 +1,158 @@
+{
+  "name": "play-and-waste",
+  "displayName": "Play & Waste",
+  "description": "Play mini games (Tic Tac Toe, Snake, Sudoku, Memory Match) right inside VSCode",
+  "version": "0.1.0",
+  "publisher": "YOUR_PUBLISHER_ID",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_GITHUB_USERNAME/play-and-waste"
+  },
+  "keywords": [
+    "games",
+    "fun",
+    "tictactoe",
+    "snake",
+    "sudoku",
+    "memory"
+  ],
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "playAndWaste.helloWorld",
+        "title": "Play & Waste: Hello World",
+        "icon": "$(smiley)"
+      },
+      {
+        "command": "playAndWaste.openGamePanel",
+        "title": "Play & Waste: Open Game Panel",
+        "icon": "$(game)"
+      },
+      {
+        "command": "playAndWaste.showQuickPick",
+        "title": "Play & Waste: Pick a Game",
+        "icon": "$(list-selection)"
+      },
+      {
+        "command": "playAndWaste.showInputBox",
+        "title": "Play & Waste: Enter Player Name",
+        "icon": "$(person)"
+      },
+      {
+        "command": "playAndWaste.showProgress",
+        "title": "Play & Waste: Show Progress Demo",
+        "icon": "$(loading~spin)"
+      },
+      {
+        "command": "playAndWaste.playTicTacToe",
+        "title": "Play & Waste: Play Tic Tac Toe",
+        "icon": "$(circle-outline)"
+      },
+      {
+        "command": "playAndWaste.playSnake",
+        "title": "Play & Waste: Play Snake",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "playAndWaste.playSudoku",
+        "title": "Play & Waste: Play Sudoku",
+        "icon": "$(symbol-numeric)"
+      },
+      {
+        "command": "playAndWaste.playMemory",
+        "title": "Play & Waste: Play Memory Match",
+        "icon": "$(symbol-misc)"
+      },
+      {
+        "command": "playAndWaste.refreshGames",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "playAndWaste",
+          "title": "Play & Waste",
+          "icon": "$(game)"
+        }
+      ]
+    },
+    "views": {
+      "playAndWaste": [
+        {
+          "id": "playAndWaste.gamesView",
+          "name": "Games",
+          "icon": "$(game)",
+          "contextualTitle": "Games"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "playAndWaste.refreshGames",
+          "when": "view == playAndWaste.gamesView",
+          "group": "navigation"
+        },
+        {
+          "command": "playAndWaste.openGamePanel",
+          "when": "view == playAndWaste.gamesView",
+          "group": "navigation"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "playAndWaste.refreshGames",
+          "when": "false"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Play & Waste",
+      "properties": {
+        "playAndWaste.playerName": {
+          "type": "string",
+          "default": "Player 1",
+          "description": "Your display name in games"
+        },
+        "playAndWaste.enableStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show Play & Waste status bar item"
+        },
+        "playAndWaste.theme": {
+          "type": "string",
+          "default": "dark",
+          "enum": [
+            "dark",
+            "light",
+            "system"
+          ],
+          "description": "Game panel theme"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.7.1",
+    "typescript": "^5.3.x"
+  }
+}

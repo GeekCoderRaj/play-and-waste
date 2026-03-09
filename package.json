@@ -2,7 +2,7 @@
   "name": "play-and-waste",
   "displayName": "Play & Waste",
   "description": "Play mini games (Tic Tac Toe, Snake, Sudoku, Memory Match) right inside VSCode",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "publisher": "geekraj",
   "license": "MIT",
   "repository": {

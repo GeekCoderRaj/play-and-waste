@@ -396,7 +396,6 @@ export class MemoryPanel {
             if (matched.size === cards.length) onWin();
           }, 400);
         } else {
-          // No match — shake and flip back
           cards[a].el.classList.add('wrong');
           cards[b].el.classList.add('wrong');
           setTimeout(() => {
@@ -404,7 +403,7 @@ export class MemoryPanel {
             cards[b].el.classList.remove('flipped', 'wrong');
             flipped = [];
             locked  = false;
-          }, 900);
+          }, 400);
         }
       }
     }

@@ -103,8 +103,21 @@ export class GamePanel {
         vscode.window.showInformationMessage("Game panel is ready! 🎮");
         break;
 
+      case "openGame": {
+        const commandMap: Record<string, string> = {
+          tictactoe: "playAndWaste.playTicTacToe",
+          snake:     "playAndWaste.playSnake",
+          memory:    "playAndWaste.playMemory",
+          sudoku:    "playAndWaste.playSudoku",
+        };
+        const cmd = commandMap[message.payload as string];
+        if (cmd) {
+          vscode.commands.executeCommand(cmd);
+        }
+        break;
+      }
+
       case "alert":
-        // Example: webview triggers a VSCode notification
         vscode.window.showInformationMessage(String(message.payload ?? ""));
         break;
 
@@ -272,19 +285,25 @@ export class GamePanel {
       <div class="card-icon">⭕</div>
       <div class="card-label">Tic Tac Toe</div>
       <div class="card-sub">2 players</div>
-      <span class="badge">Coming soon</span>
+      <span class="badge">Play</span>
     </div>
     <div class="card" data-game="snake">
       <div class="card-icon">🐍</div>
       <div class="card-label">Snake</div>
       <div class="card-sub">Keyboard</div>
-      <span class="badge">Coming soon</span>
+      <span class="badge">Play</span>
     </div>
     <div class="card" data-game="memory">
       <div class="card-icon">🃏</div>
       <div class="card-label">Memory Match</div>
       <div class="card-sub">Solo</div>
-      <span class="badge">Coming soon</span>
+      <span class="badge">Play</span>
+    </div>
+    <div class="card" data-game="sudoku">
+      <div class="card-icon">🔢</div>
+      <div class="card-label">Sudoku</div>
+      <div class="card-sub">Puzzle</div>
+      <span class="badge">Play</span>
     </div>
   </div>
 
@@ -324,9 +343,8 @@ export class GamePanel {
     document.querySelectorAll('.card').forEach((card) => {
       card.addEventListener('click', () => {
         const game = card.dataset.game;
-        appendLog(\`🖱 Clicked: \${game}\`);
-        // Tell the extension which game was selected
-        vscode.postMessage({ command: 'alert', payload: \`\${game} is coming soon!\` });
+        appendLog(\`🖱 Opening: \${game}\`);
+        vscode.postMessage({ command: 'openGame', payload: game });
       });
     });
 
